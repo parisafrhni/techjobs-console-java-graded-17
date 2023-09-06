@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -18,7 +19,7 @@ public class JobData {
     private static final String DATA_FILE = "src/main/resources/job_data.csv";
     private static boolean isDataLoaded = false;
 
-    
+
     private static ArrayList<HashMap<String, String>> allJobs;
 
     /**
@@ -76,7 +77,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -94,9 +95,26 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+
+        for (HashMap<String, String> job : allJobs) {
+            boolean isMatch = false;
+            for (Map.Entry<String, String> entry : job.entrySet()) {
+                String columnValue = entry.getValue();
+
+                if (columnValue.toLowerCase().contains(value.toLowerCase())){
+                    isMatch = true;
+                    break;
+                }
+            }
+            if (isMatch) {
+                matchingJobs.add(job); // Add the job to the list if there's a match
+            }
+        }
+
 
         // TODO - implement this method
-        return null;
+        return matchingJobs;
     }
 
     /**
