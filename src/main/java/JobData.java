@@ -95,11 +95,11 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>(); //empty ArrayList that stores the matching jobs based on the "value"
 
-        for (HashMap<String, String> job : allJobs) {
+        for (HashMap<String, String> job : allJobs) {//iterates through each job
             boolean isMatch = false;
-            for (Map.Entry<String, String> entry : job.entrySet()) {
+            for (Map.Entry<String, String> entry : job.entrySet()) {//iterates through the key-value pairs in the current job's HashMap
                 String columnValue = entry.getValue();
 
                 if (columnValue.toLowerCase().contains(value.toLowerCase())){

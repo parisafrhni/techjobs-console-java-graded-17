@@ -120,19 +120,19 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
-            System.out.println("No Results");
+            System.out.print("No Results");
             return;
         }
 
         for (HashMap<String, String> job : someJobs) {
-            System.out.println("*****");
+            System.out.println("\n*****");
             for (Map.Entry<String, String> entry : job.entrySet()) { //Map.Entry interface in Java provides certain methods to access the entry in the Map. By gaining access to the entry of the Map we can easily manipulate them. Map.Entry is a generic and is defined in the java.util package.
                 String field = entry.getKey();                        //The java.util.HashMap.entrySet() method in Java is used to create a set out of the same elements contained in the hash map.
                 String value = entry.getValue();
                 System.out.println(field + ": " + value);
             }
             System.out.println("*****");
-            System.out.println();
+
         }
     }
 
